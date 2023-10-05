@@ -6,7 +6,7 @@ from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
 
-# Load data from file path
+# Load data
 data = pd.read_csv('C:/Users/pc/OneDrive - FHNW/PWC_Forage/archive/bank-additional-full.csv', sep=';')
 
 # Convert target variable to binary (1 for 'yes', 0 for 'no')
