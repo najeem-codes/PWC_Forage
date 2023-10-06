@@ -9,16 +9,18 @@ from sklearn.compose import ColumnTransformer
 # Load data
 data = pd.read_csv('C:/Users/pc/OneDrive - FHNW/PWC_Forage/archive/bank-additional-full.csv', sep=';')
 
-# Convert target variable to binary (1 for 'yes', 0 for 'no')
-data['y'] = data['y'].map({'yes': 1, 'no': 0})
-
 # Define preprocessor
+# At this point, 'y' column is still in the data and of type object
 preprocessor = ColumnTransformer(
     transformers=[
         ('num', StandardScaler(), data.select_dtypes(include=['float64', 'int64']).columns),
         ('cat', OneHotEncoder(), data.select_dtypes(include=['object']).drop(columns=['y']).columns)
     ]
 )
+
+# Convert target variable to binary (1 for 'yes', 0 for 'no')
+# Now we convert and drop 'y' column
+data['y'] = data['y'].map({'yes': 1, 'no': 0})
 
 # Define pipeline
 pipeline = Pipeline([
